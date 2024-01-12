@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="293b104d-05b9-4356-92a1-a2b7325b6073" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/WareHouse.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="293b104d-05b9-4356-92a1-a2b7325b6073" name="Changes" comment="Inicial">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WareHouse/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WareHouse/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +15,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "dpirespereira86"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="16d794b7-dd89-40c0-986d-74e94772fa2f" />
+        <option name="url" value="https://github.com/dpirespereira86/2dWareHouse.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "customColor": "",
@@ -35,9 +44,18 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Diego Pires/OneDrive - SMART RJ CONCESSIONARIA DE ILUMINACAO PUBLICA SPE/WareHouse/WareHouse"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Diego Pires\OneDrive - SMART RJ CONCESSIONARIA DE ILUMINACAO PUBLICA SPE\WareHouse\WareHouse" />
+      <recent name="C:\Users\Diego Pires\OneDrive - SMART RJ CONCESSIONARIA DE ILUMINACAO PUBLICA SPE\WareHouse" />
+      <recent name="C:\Users\Diego Pires\OneDrive - SMART RJ CONCESSIONARIA DE ILUMINACAO PUBLICA SPE\WareHouse\Produto" />
+      <recent name="C:\Users\Diego Pires\OneDrive - SMART RJ CONCESSIONARIA DE ILUMINACAO PUBLICA SPE\WareHouse\Armazem" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="WareHouse" />
@@ -78,6 +96,48 @@
       <option name="presentableId" value="Default" />
       <updated>1705059027651</updated>
     </task>
+    <task id="LOCAL-00001" summary="Inicial">
+      <option name="closed" value="true" />
+      <created>1705059976921</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1705059976921</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Inicial">
+      <option name="closed" value="true" />
+      <created>1705060152063</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1705060152063</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Inicial" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inicial" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Produto/serializers.py</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
