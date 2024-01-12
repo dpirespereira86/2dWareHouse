@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from Armazem.urls import router
+from Produto.urls import router_produto
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/v1/produtos/', include('Produto.urls')),
-    path('api/v1/armazem/', include(router.urls)),
+    path('api/v1/produtos/', include((router_produto.urls,'Produto'),namespace='Produto')),
+    path('api/v1/armazem/', include((router.urls,'Armazem'),namespace='Armazem'))
 ]
