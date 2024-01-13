@@ -7,6 +7,12 @@ class UnidadeSerializers(serializers.ModelSerializer):
         fields=('nome',)
 
 
+class EstoqueProdutoSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Estoque
+        fields=( 'posicao','quantidade',)
+
+
 class EstoqueSerializers(serializers.ModelSerializer):
     class Meta:
         model = Estoque
@@ -23,7 +29,7 @@ class PosicaoSerializers(serializers.ModelSerializer):
         fields=('id','unidade','nome','rua','predio','nivel','sequencia')
 
 class MovimentacaoSerializers(serializers.ModelSerializer):
+    itens = ItemSerializers(many=True)
     class Meta:
-        item_set = ItemSerializers(many=True)
         model = MOVIMENTACAO
-        fields=('id','tipo','date','operador','posicao','item_set')
+        fields=('id','tipo','date','operador','posicao','itens')

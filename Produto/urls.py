@@ -5,8 +5,9 @@ from . import views
 from rest_framework.routers import SimpleRouter
 
 router_produto = SimpleRouter()
-router_produto.register('',views.ProdutoViewSet)
 router_produto.register('familia',views.FamiliaViewSet)
+router_produto.register('estoque',views.ProdutoEstoqueViewSet)
+router_produto.register('',views.ProdutoViewSet)
 
 urlpatterns = [
 

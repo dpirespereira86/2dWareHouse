@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Familia(models.Model):
     nome= models.CharField(max_length=30)
@@ -34,11 +35,11 @@ class Produto(models.Model):
     familia= models.ForeignKey(Familia,on_delete=models.CASCADE)
     unidade = models.CharField(max_length=30,choices=UNIDADE_CHOICE,null=False,blank='False')
     tipo_item = models.CharField(max_length=30,null=False,blank='False')
-    ativo = models.CharField(max_length=30,choices=ATIVO_CHOICES,null=False,blank='False')
-    especificacao = models.CharField(max_length=200,default='')
+    ativo = models.BooleanField(default='Sim')
+    especificacao = models.TextField(max_length=200,default='',blank=True,null= True)
     fornecedor = models.CharField(max_length=200, null=True, blank='True')
-    observacao = models.CharField(max_length=200,default='')
-    imagem= models.ImageField(default='')
+    observacao = models.TextField(max_length=200,default='',blank=True,null=True)
+    imagem= models.ImageField(default='',null=True,blank=True)
     tempo_validade = models.IntegerField(default=0)
     comprimento = models.DecimalField(max_digits=6,decimal_places=2,default=0.00)
     largura= models.DecimalField(max_digits=6,decimal_places=2,default=0.00)
@@ -57,7 +58,3 @@ class Produto(models.Model):
     class Meta:
         verbose_name = "Produto"
         verbose_name_plural = "Produtos"
-
-
-
-# Create your models here.

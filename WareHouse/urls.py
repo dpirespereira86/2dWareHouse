@@ -21,7 +21,7 @@ from Produto.urls import router_produto
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
+    path('auth/', include('rest_framework.urls')),
     path('api/v1/produtos/', include((router_produto.urls,'Produto'),namespace='Produto')),
     path('api/v1/armazem/', include((router.urls,'Armazem'),namespace='Armazem'))
 ]

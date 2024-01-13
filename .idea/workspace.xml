@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="293b104d-05b9-4356-92a1-a2b7325b6073" name="Changes" comment="Inicial">
+      <change beforePath="$PROJECT_DIR$/.idea/WareHouse.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WareHouse.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Armazem/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Armazem/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Armazem/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Armazem/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Armazem/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Armazem/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Produto/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Produto/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Produto/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Produto/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Produto/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Produto/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Produto/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Produto/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WareHouse/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/WareHouse/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +27,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
+    {
+      "searchQuery": "https://github.com/dpirespereira86/2dWareHouse",
+      "state": "OPEN",
+      "assignee": "dpirespereira86"
+    }
+  ],
   "lastFilter": {
+    "searchQuery": "https://github.com/dpirespereira86/2dWareHouse",
     "state": "OPEN",
     "assignee": "dpirespereira86"
   }
@@ -27,15 +43,15 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="16d794b7-dd89-40c0-986d-74e94772fa2f" />
-        <option name="url" value="https://github.com/dpirespereira86/2dWareHouse.git" />
+        <option name="accountId" value="c0e49943-2f9f-4b1e-9d4f-ced2cd4d3c48" />
+        <option name="url" value="https://github.com/dpirespereira86/2dWareHouse" />
       </UrlAndAccount>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2aqvfZemeW9HPjzztQoaJjEwUND" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -47,7 +63,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Diego Pires/OneDrive - SMART RJ CONCESSIONARIA DE ILUMINACAO PUBLICA SPE/WareHouse/WareHouse"
+    "last_opened_file_path": "D:/OneDrive/python project/2dWareHouse",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">

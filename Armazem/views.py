@@ -41,36 +41,48 @@ class ItemViewSet(viewsets.ModelViewSet):
         produto = Produto.objects.get(id=int(request.data['codigo']))
         dados = request.data.copy()
         nume = Item.objects.last()
+        if nume == None:
+            dados.__setitem__('codigo_interno', f'{produto.codigo}-{1}')
+        else:
+            dados.__setitem__('codigo_interno', f'{produto.codigo}-{nume.id + 1}')
+
         dados.__setitem__('descricao',produto.descricao)
-        dados.__setitem__('codigo_interno', f'{produto.codigo} - {nume.id + 1}')
+
         return dados
 
 
-    def salvaestoque(self,request):
+    def entrada(self,request,movimentacao,produto,estoque):
+        if not estoque:
+            try:
+                Estoque.objects.create(posicao=movimentacao.posicao, produto=produto,
+                                       quantidade=float(request.data['quantidade']))
+            except:
+                raise ValidationError('Não foi possivel salvar Estoque')
+        else:
+            saldo = float(estoque[0].quantidade) + float(request.data['quantidade'])
+            e = Estoque.objects.get(id=int(estoque[0].id))
+            e.quantidade = saldo
+            e.save()
+
+    def saida(self, request, estoque):
+        if float(request.data['quantidade']) > float(estoque[0].quantidade):
+            raise ValidationError('Saldo insuficiente')
+        else:
+            saldo = float(estoque[0].quantidade) - float(request.data['quantidade'])
+            e = Estoque.objects.get(id=int(estoque[0].id))
+            e.quantidade = saldo
+            e.save()
+
+    def salvaestoque(self, request):
         movimentacao = MOVIMENTACAO.objects.get(id=int(request.data['movimentacao']))
         produto = Produto.objects.get(id=int(request.data['codigo']))
         estoque = Estoque.objects.filter(posicao=movimentacao.posicao, produto=produto)
-        if movimentacao.tipo == '1':#Entrada
-             if not estoque:
-                 try:
-                   Estoque.objects.create(posicao=movimentacao.posicao, produto=produto,
-                                        quantidade=float(request.data['quantidade']))
-                 except:
-                     raise ValidationError('Não foi possivel salvar Estoque')
-             else:
-                saldo = float(estoque[0].quantidade) + float(request.data['quantidade'])
-                e = Estoque.objects.get(id=int(estoque[0].id))
-                e.quantidade = saldo
-                e.save()
 
-        if movimentacao.tipo == '2': #Saida
-            if float(request.data['quantidade']) > float(estoque[0].quantidade):
-                raise ValidationError('Saldo insuficiente')
-            else:
-                saldo = float(estoque[0].quantidade) - float(request.data['quantidade'])
-                e = Estoque.objects.get(id=int(estoque[0].id))
-                e.quantidade = saldo
-                e.save()
+        if movimentacao.tipo == '1':  # Entrada
+            self.entrada(request, movimentacao, produto, estoque)
+
+        if movimentacao.tipo == '2':  # Saida
+            self.saida(request, estoque)
 
 
 
@@ -78,6 +90,7 @@ class EstoqueViewSet(viewsets.ModelViewSet):
     queryset = Estoque.objects.all()
     serializer_class = EstoqueSerializers
     permission_classes = [permissions.IsAuthenticated]
+
 
 
 class PosicaoViewSet(viewsets.ModelViewSet):

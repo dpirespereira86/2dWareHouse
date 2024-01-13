@@ -1,5 +1,5 @@
 from django.db import models
-from Produto.models import *
+from Produto.models import Produto
 
 # Create your models here.
 class Unidade(models.Model):
@@ -51,7 +51,7 @@ class Posicao(models.Model):
         verbose_name_plural="Posições"
 
 class MOVIMENTACAO(models.Model):
-    MOVIMENTACAO_CHOICE = (('1', 'Entrada'), ('2', 'Saida'), ('3', 'Transferência'),)
+    MOVIMENTACAO_CHOICE = (('1', 'Entrada'), ('2', 'Saida'),)
 
     id = models.AutoField(primary_key=True, unique=True)
     tipo = models.CharField(max_length=30, choices=MOVIMENTACAO_CHOICE, null=False, blank='False')
@@ -69,14 +69,14 @@ class MOVIMENTACAO(models.Model):
 
 class Item(models.Model):
     id = models.AutoField(primary_key=True,unique=True)
-    codigo=models.ForeignKey(Produto,on_delete=models.CASCADE)
+    codigo=models.ForeignKey(Produto,related_name='itens',on_delete=models.CASCADE)
     codigo_interno = models.CharField(max_length=30)
     descricao = models.CharField(max_length=100)
     quantidade = models.DecimalField(max_digits=5,decimal_places=2)
-    movimentacao = models.ForeignKey(MOVIMENTACAO,on_delete=models.CASCADE)
+    movimentacao = models.ForeignKey(MOVIMENTACAO,related_name='itens',on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.codigo} - {self.descricao}'
+        return f'{self.codigo}'
 
     class Meta:
         verbose_name = "Item"
@@ -85,11 +85,11 @@ class Item(models.Model):
 
 class Estoque(models.Model):
     posicao = models.ForeignKey(Posicao,on_delete=models.CASCADE)
-    produto = models.ForeignKey(Produto,on_delete=models.CASCADE)
+    produto = models.ForeignKey(Produto,related_name='estoques',on_delete=models.CASCADE)
     quantidade=models.DecimalField(max_digits=5,decimal_places=2)
 
     def __str__(self):
-        return self.posicao
+        return f'{self.posicao}'
 
     class Meta:
         verbose_name = "Estoque"
