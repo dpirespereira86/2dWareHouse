@@ -22,7 +22,7 @@ class MovimentacaoViewSet(viewsets.ModelViewSet):
     serializer_class = MovimentacaoSerializers
     permission_classes = [permissions.IsAuthenticated]
 
-
+#######################################################################################################################
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializers
@@ -45,10 +45,32 @@ class ItemViewSet(viewsets.ModelViewSet):
             dados.__setitem__('codigo_interno', f'{produto.codigo}-{1}')
         else:
             dados.__setitem__('codigo_interno', f'{produto.codigo}-{nume.id + 1}')
-
         dados.__setitem__('descricao',produto.descricao)
-
         return dados
+
+    def ponto_de_pedido(self,produto, minimo,estoque_seguranca,opcao,saldo):
+        s = minimo + ((minimo * estoque_seguranca)/100)
+        if saldo <= s:
+            raise ValidationError(f'Ponto de compra atingido para {Produto.codigo} - {Produto.descricao}')
+
+    def estoque_minimo(self,produto, minimo,saldo):
+       if saldo <= minimo:
+           raise ValidationError(f'Estoque Minimo atingido para {Produto.codigo} - {Produto.descricao}')
+
+    def estoque_maximo(self, produto,saldo):
+       pass
+
+
+    def SalvaSaldoProduto(self,Produto,tipo_movimentacao,valor):
+      if tipo_movimentacao == '1':
+          Produto.saldo=float(Produto.saldo) + float(valor)
+          Produto.save()
+          self.estoque_maximo(Produto, Produto.saldo)
+      if tipo_movimentacao == '2':
+          Produto.saldo=float(Produto.saldo) - float(valor)
+          Produto.save()
+          self.ponto_de_pedido(Produto,Produto.estoque_minimo,Produto.estoque_seguranca,Produto.auto_solicitacao,Produto.saldo)
+          self.estoque_minimo(Produto,Produto.estoque_minimo, Produto.saldo)
 
 
     def entrada(self,request,movimentacao,produto,estoque):
@@ -56,6 +78,7 @@ class ItemViewSet(viewsets.ModelViewSet):
             try:
                 Estoque.objects.create(posicao=movimentacao.posicao, produto=produto,
                                        quantidade=float(request.data['quantidade']))
+                self.SalvaSaldoProduto(produto, movimentacao.tipo, request.data['quantidade'])
             except:
                 raise ValidationError('Não foi possivel salvar Estoque')
         else:
@@ -63,8 +86,9 @@ class ItemViewSet(viewsets.ModelViewSet):
             e = Estoque.objects.get(id=int(estoque[0].id))
             e.quantidade = saldo
             e.save()
+            self.SalvaSaldoProduto(produto,movimentacao.tipo,request.data['quantidade'])
 
-    def saida(self, request, estoque):
+    def saida(self, request, estoque,produto,movimentacao):
         if float(request.data['quantidade']) > float(estoque[0].quantidade):
             raise ValidationError('Saldo insuficiente')
         else:
@@ -72,6 +96,7 @@ class ItemViewSet(viewsets.ModelViewSet):
             e = Estoque.objects.get(id=int(estoque[0].id))
             e.quantidade = saldo
             e.save()
+            self.SalvaSaldoProduto(produto,movimentacao.tipo,request.data['quantidade'])
 
     def salvaestoque(self, request):
         movimentacao = MOVIMENTACAO.objects.get(id=int(request.data['movimentacao']))
@@ -82,10 +107,8 @@ class ItemViewSet(viewsets.ModelViewSet):
             self.entrada(request, movimentacao, produto, estoque)
 
         if movimentacao.tipo == '2':  # Saida
-            self.saida(request, estoque)
-
-
-
+            self.saida(request, estoque,produto,movimentacao)
+#######################################################################################################################
 class EstoqueViewSet(viewsets.ModelViewSet):
     queryset = Estoque.objects.all()
     serializer_class = EstoqueSerializers

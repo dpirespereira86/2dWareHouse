@@ -11,10 +11,10 @@ class ProdutoSerializers(serializers.ModelSerializer):
     'prazo_frete','peso','observacao','comprimento','largura','altura','imagem')
 
 class ProdutoEstoqueSerializers(serializers.ModelSerializer):
-    estoques= EstoqueProdutoSerializers
+    estoques= EstoqueProdutoSerializers(many=True)
     class Meta:
         model = Produto
-        fields=('id','codigo','estoques')
+        fields=('id','codigo','saldo','estoques')
 
 class FamiliaSerializers(serializers.ModelSerializer):
     class Meta:

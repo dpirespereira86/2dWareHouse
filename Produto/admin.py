@@ -5,7 +5,7 @@ from Produto.models import Produto,Familia
 
 @admin.register(Produto)
 class ProdutoAdmin(admin.ModelAdmin):
-    list_display = ('id','codigo','codigo_Aaxiliar','descricao','familia','unidade','tipo_item','ativo','especificacao',
+    list_display = ('id','codigo','codigo_Auxiliar','descricao','familia','unidade','tipo_item','ativo','especificacao',
     'prazo_frete','peso','observacao','comprimento','largura','altura','imagem')
 
 

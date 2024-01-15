@@ -6,19 +6,13 @@ class Familia(models.Model):
     nome= models.CharField(max_length=30)
 
     def __str__(self):
-        return self.nome
+        return f'{self.nome}'
 
     class Meta:
         verbose_name = "Familia"
 
 
 class Produto(models.Model):
-
-    ATIVO_CHOICES = (
-        ("Sim", "Sim"),
-        ("Não", "Nao")
-    )
-
     UNIDADE_CHOICE =(
         ("Cj","Conjunto"),("Cx", "Caixa"),("Dz", "Dúzia"),("Fd", "Fardo"),
         ("Fl", "Folha"),("Gl", "Galão"), ("Lt", "Lote"),("Jg", "Jogo"),
@@ -29,16 +23,16 @@ class Produto(models.Model):
     )
 
     id= models.AutoField(primary_key=True)
-    codigo = models.CharField(max_length=30,null=False,blank='False',unique=True)
-    codigo_Aaxiliar = models.CharField(max_length=30,null=False,blank='False',unique=True)
-    descricao = models.CharField(max_length=100,null=False,blank='False')
+    codigo = models.CharField(max_length=30,null=False,blank=False,unique=True)
+    codigo_Auxiliar = models.CharField(max_length=30,null=True,blank=True,)
+    descricao = models.CharField(max_length=100,null=False,blank=False)
     familia= models.ForeignKey(Familia,on_delete=models.CASCADE)
-    unidade = models.CharField(max_length=30,choices=UNIDADE_CHOICE,null=False,blank='False')
-    tipo_item = models.CharField(max_length=30,null=False,blank='False')
-    ativo = models.BooleanField(default='Sim')
-    especificacao = models.TextField(max_length=200,default='',blank=True,null= True)
-    fornecedor = models.CharField(max_length=200, null=True, blank='True')
-    observacao = models.TextField(max_length=200,default='',blank=True,null=True)
+    unidade = models.CharField(max_length=30,choices=UNIDADE_CHOICE,null=False,blank=False)
+    tipo_item = models.CharField(max_length=30,null=False,blank=False)
+    ativo = models.BooleanField(default=True)
+    especificacao = models.TextField(max_length=200,blank=True,null= True)
+    fornecedor = models.CharField(max_length=200, null=True, blank=True)
+    observacao = models.TextField(max_length=200,blank=True,null=True)
     imagem= models.ImageField(default='',null=True,blank=True)
     tempo_validade = models.IntegerField(default=0)
     comprimento = models.DecimalField(max_digits=6,decimal_places=2,default=0.00)
@@ -50,6 +44,7 @@ class Produto(models.Model):
     estoque_minimo = models.DecimalField(max_digits=6,decimal_places=2,default=0.00)
     estoque_maximo = models.DecimalField(max_digits=6,decimal_places=2,default=0.00)
     estoque_seguranca = models.DecimalField(max_digits=6,decimal_places=2,default=0.00)
+    auto_solicitacao=models.BooleanField(default=False)
 
 
     def __str__(self):

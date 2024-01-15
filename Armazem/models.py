@@ -6,7 +6,7 @@ class Unidade(models.Model):
     nome= models.CharField(max_length=30,unique=True)
 
     def __str__(self):
-        return self.nome
+        return f'{self.nome}'
 
     class Meta:
         verbose_name = "Unidade"
@@ -36,12 +36,12 @@ class Posicao(models.Model):
     )
 
     id = models.AutoField(primary_key=True)
-    unidade=models.ForeignKey(Unidade,on_delete=models.CASCADE)
+    unidade=models.ForeignKey(Unidade,related_name='posicoes',on_delete=models.CASCADE)
     nome = models.CharField(max_length=30,)
-    rua = models.CharField(max_length=30,choices=ALFABETO_CHOICE,null=False,blank='False')
-    predio = models.CharField(max_length=30,choices=ALFABETO_CHOICE,null=False,blank='False')
-    nivel = models.CharField(max_length=30,choices=NUMERO_CHOICE,null=False,blank='False')
-    sequencia = models.CharField(max_length=30,choices=NUMERO_CHOICE,null=False,blank='False')
+    rua = models.CharField(max_length=30,choices=ALFABETO_CHOICE,null=False,blank=False)
+    predio = models.CharField(max_length=30,choices=ALFABETO_CHOICE,null=False,blank=False)
+    nivel = models.CharField(max_length=30,choices=NUMERO_CHOICE,null=False,blank=False)
+    sequencia = models.CharField(max_length=30,choices=NUMERO_CHOICE,null=False,blank=False)
 
     def __str__(self):
         return self.nome
@@ -54,7 +54,7 @@ class MOVIMENTACAO(models.Model):
     MOVIMENTACAO_CHOICE = (('1', 'Entrada'), ('2', 'Saida'),)
 
     id = models.AutoField(primary_key=True, unique=True)
-    tipo = models.CharField(max_length=30, choices=MOVIMENTACAO_CHOICE, null=False, blank='False')
+    tipo = models.CharField(max_length=30, choices=MOVIMENTACAO_CHOICE, null=False, blank=False)
     date=models.DateField()
     operador= models.CharField(max_length=30)
     posicao= models.ForeignKey(Posicao,on_delete=models.CASCADE)
@@ -89,7 +89,7 @@ class Estoque(models.Model):
     quantidade=models.DecimalField(max_digits=5,decimal_places=2)
 
     def __str__(self):
-        return f'{self.posicao}'
+        return f'{self.posicao.nome}'
 
     class Meta:
         verbose_name = "Estoque"
